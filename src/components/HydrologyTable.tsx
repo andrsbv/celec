@@ -12,7 +12,7 @@ import DataHour from '../interface/DataHour';
 
 export default function HydrologyTable( { data } : { data: DataHour[] } ) {
 
-  let [rows, setRows] = useState(Array<DataHour>)
+  let [rows, setRows] = useState<DataHour[]>([])
 
   let getRows = () => {
     if (rows.length) {
@@ -26,23 +26,19 @@ export default function HydrologyTable( { data } : { data: DataHour[] } ) {
               {row.Fecha}
             </TableCell>
             <TableCell align="center">{row.Mazar}</TableCell>
-            
-            {/* PENDIENTE: Valores a renderizar en cada celda  */}
-            
-            
+            <TableCell align="center">{row.Molino}</TableCell>
+            <TableCell align="center">{row.Sopladora}</TableCell>
           </TableRow>
         ))
       )
     } else {
-      return <TableRow><TableCell>No data</TableCell></TableRow>
+      return <TableRow><TableCell colSpan={4}>No data</TableCell></TableRow>
     }
-      
   }
 
-  useEffect( ()=> {
+  useEffect(() => {
     setRows(data)
   }, [data])
-  
 
   return (
     <TableContainer component={Paper}>
@@ -51,10 +47,8 @@ export default function HydrologyTable( { data } : { data: DataHour[] } ) {
           <TableRow>
             <TableCell>Fecha</TableCell>
             <TableCell align='center'>Mazar</TableCell>
-            
-            {/* PENDIENTE: Cabeceras de las columnas  */}
-            
-
+            <TableCell align='center'>Molino</TableCell>
+            <TableCell align='center'>Sopladora</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
